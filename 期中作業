@@ -64,7 +64,6 @@ star(15, 190, 190,4)
 ctx:closePath()
 ctx.fillStyle = '#fff'
 ctx:fill()
-ctx.fillStyle = '#fff'
 
 star(15, 180, 180,4)
 ctx:closePath()
