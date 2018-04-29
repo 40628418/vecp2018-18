@@ -7,7 +7,7 @@ function jointEntry(ui,id,newVal)
    if (angle==nil) then
       print("Could not convert number..."..newVal)
       return
-   end
+   end--[一個數值回傳]
    -- if (angle >= 2*math.pi) then
    -- 	  print("Clipping angle to 2pi")
    -- 	  angle = 2*math.pi
@@ -15,7 +15,7 @@ function jointEntry(ui,id,newVal)
    -- if (angle <= -2*math.pi) then
    -- 	  print("Clipping angle to -2pi")
    -- 	  angle = -2*math.pi
-   -- end
+   -- end--[角度換弳度=角度*π/180]
    for i=1,#jh,1 do
       if (id==7000+i) then
          simExtCustomUI_setLabelText(ui,3000+i,string.format('Reference = %+6.3f',angle))
@@ -280,13 +280,12 @@ if (sim_call_type==sim_childscriptcall_initialization) then
                <label text="Enter joint angle (rad):" />
                <edit value="" id="7008" oneditingfinished="jointEntry" />
              </group>
-           </group>
-           
-         </group>
+  </group> 
+ </group>
          
-       </tab>
+</tab>
 
-    </tabs>
+</tabs>
 </ui>
 ]]
     ui=simExtCustomUI_create(xml)
@@ -297,7 +296,8 @@ if (sim_call_type==sim_childscriptcall_initialization) then
     jh[3]=simGetObjectHandle('World_Th_Joint')
     for i=4,#jh,1 do
        jh[i]=simGetObjectHandle('Joint'..(i-3))
-    end
+    end--[取得joint回傳angles]
+    
     -- for i=1,#jh,1 do
     --    print(string.format("jh[%d] = %d",i,jh[i]))
     -- end
@@ -324,7 +324,7 @@ if (sim_call_type==sim_childscriptcall_actuation) then
    updateActualText(jh, act_ang)
    calcSE3(ui, 1234, ee, world)
    calcSE3(ui, 1235, base, world)
-end
+end--[把每個值套用在各自設定]
 
 if (sim_call_type==sim_childscriptcall_sensing) then
    
